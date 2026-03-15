@@ -1,0 +1,111 @@
+html, body {
+  min-height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #eb9ed6;
+  color: #000;
+}
+
+body {
+  overflow-y: auto;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+
+.card {
+  background: #000;
+  padding: 40px;
+  border-radius: 10px;
+  width: 350px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(255, 77, 166, 0.5);
+  color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin-bottom: 25px;
+  color: #ff4da6;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #000;
+  outline: none;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border: 1px solid #ff4da6;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #ff4da6;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  box-sizing: border-box;
+}
+
+button:hover {
+  background: #ff2e93;
+  transform: scale(1.03);
+}
+
+a {
+  color: #ff4da6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.user-item {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #333;
+}
+
+.user-text {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.button-group a,
+.button-group button {
+  flex: 1;
+}
+
+.button-group a button {
+  width: 100%;
+}
+
+.button-group > button {
+  width: auto;
+}

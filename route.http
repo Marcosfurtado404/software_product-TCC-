@@ -1,0 +1,43 @@
+POST http://localhost:1515/Admins
+Content-Type: application/json
+
+{
+        "adminName": "Maria Eduarda Frone",
+        "adminAge": "23",
+        "email": "algumacoisa@gmail.com",
+        "password": "123456"
+}
+
+###
+POST http://localhost:1515/login
+Content-Type: application/json
+
+{
+        "email": "algumacoisa@gmail.com",
+        "password": "123456"
+}
+
+
+
+###
+//filtro=Maria
+GET  http://localhost:1515/listusers?search=Maria
+###
+//lista todos
+GET  http://localhost:1515/listusers
+
+###
+
+PUT http://localhost:1515/users/4650019d-d670-4f9a-a647-8b36649a0d78
+Content-Type: application/json
+
+{
+    "userName": "Eduarda",
+    "userAge": "23"
+
+}
+
+###
+
+DELETE http://localhost:1515/users/5956ba0a-75c5-4851-b87b-481ae6e2d2c5
+Content-Type: application/json
