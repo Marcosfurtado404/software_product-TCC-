@@ -2,9 +2,9 @@ POST http://localhost:1515/Admins
 Content-Type: application/json
 
 {
-        "adminName": "Maria Eduarda Frone",
-        "adminAge": "23",
-        "email": "algumacoisa@gmail.com",
+        "adminName": "Marcos",
+        "adminAge": null,
+        "email": "12345@gmail.com",
         "password": "123456"
 }
 
@@ -21,23 +21,62 @@ Content-Type: application/json
 
 ###
 //filtro=Maria
-GET  http://localhost:1515/listusers?search=Maria
+GET  http://localhost:1515/listclientes?search=Maria
 ###
 //lista todos
-GET  http://localhost:1515/listusers
+GET  http://localhost:1515/listclientes
 
 ###
 
-PUT http://localhost:1515/users/4650019d-d670-4f9a-a647-8b36649a0d78
+PUT http://localhost:1515/clientes/4650019d-d670-4f9a-a647-8b36649a0d78
 Content-Type: application/json
 
 {
-    "userName": "Eduarda",
-    "userAge": "23"
+    "clienteName": "Eduarda",
+    "clienteAge": "23"
 
 }
 
 ###
 
-DELETE http://localhost:1515/users/5956ba0a-75c5-4851-b87b-481ae6e2d2c5
+DELETE http://localhost:1515/clientes/5956ba0a-75c5-4851-b87b-481ae6e2d2c5
 Content-Type: application/json
+
+
+
+
+###
+POST http://localhost:1515/clientes
+Content-Type: application/json
+
+    {
+        "clienteName": "Roderval",
+        "clienteAge": "49",
+        "clienteBirthdate":"20260420",
+        "clientePhonenumb":"990876453",
+        "rimel":false,
+        "gestante":false,
+        "procRecente":null, 
+        "alergia":null,
+        "tireoide":false,
+        "probOcular":null,
+        "tratOncologico":null,
+        "dormelado":"nao",
+        "especificProblem":null
+
+        }
+
+
+
+###
+POST  http://localhost:1515/createagendamento
+Content-Type: application/json
+
+    {
+        
+        "data_agendamento": "06/04/2003",
+        "procedimento": "cilios gatinho",
+        "valor": "100,00",
+        "clienteID":"4215f624-d441-493a-b897-e12854e20cd9"
+
+        }

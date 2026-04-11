@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 
 import Home from "./pages/home"
-import ListUsers from "./pages/ListUsers"
-import CreateUser from "./pages/createUser"
-import EditUser from "./pages/EditUser"
+import Listclientes from "./pages/ListClientes"
+import Createcliente from "./pages/CreateCliente"
+import Editcliente from "./pages/EditCliente"
 import CreateAdmin from "./pages/CreateAdmin"
 import AdminAuth from "./pages/AdminAuth"
 import Login from "./pages/Login"
@@ -35,28 +35,28 @@ function App(){
   />
 
   <Route 
-    path="/listUsers"
+    path="/listclientes"
     element={
       <ProtectedRoute>
-        <ListUsers />
+        <Listclientes />
       </ProtectedRoute>
     }
   />
 
   <Route 
-    path="/create-user"
+    path="/create-cliente"
     element={
       <ProtectedRoute>
-        <CreateUser />
+        <Createcliente />
       </ProtectedRoute>
     }
   />
 
   <Route 
-    path="/edit-user/:id"
+    path="/edit-cliente/:id"
     element={
       <ProtectedRoute>
-        <EditUser />
+        <Editcliente />
       </ProtectedRoute>
     }
   />

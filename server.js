@@ -63,43 +63,104 @@ server.post('/Admins', async (request,reply) =>{
 })
 
 
-//cria os users
-server.post('/users', async (request, reply) => {
+//cria os clientes
+function emptyToNull(value) {
+  return value === "" ? null : value
+}
 
-    
-    const {userName,userAge} = request.body
+function numberOrNull(value) {
+  return value === "" ? null : Number(value)
+}
 
-    await database.create  ({
-        userName: userName,
-        userAge: userAge,
-        
+function booleanOrNull(value) {
+  if (value === "") return null
+  if (value === "true") return true
+  if (value === "false") return false
+  return value
+}
+
+// cria os clientes
+server.post('/clientes', async (request, reply) => {
+  const {
+    clienteName,
+    clienteAge,
+    clienteBirthdate,
+    clientePhonenumb,
+    rimel,
+    gestante,
+    procRecente,
+    alergia,
+    tireoide,
+    probOcular,
+    tratOncologico,
+    dormelado,
+    especificProblem
+  }      = request.body
+
+  await database.createcliente({
+    clienteName: emptyToNull(clienteName),
+    clienteAge: numberOrNull(clienteAge),
+    clienteBirthdate: emptyToNull(clienteBirthdate),
+    clientePhonenumb: emptyToNull(clientePhonenumb),
+    rimel: booleanOrNull(rimel),
+    gestante: booleanOrNull(gestante),
+    procRecente: emptyToNull(procRecente),
+    alergia: emptyToNull(alergia),
+    tireoide: booleanOrNull(tireoide),
+    probOcular: emptyToNull(probOcular),
+    tratOncologico: emptyToNull(tratOncologico),
+    dormelado: emptyToNull(dormelado),
+    especificProblem: emptyToNull(especificProblem),
+  })
+
+  console.log(await database.list())
+
+  return reply.status(201).send()
 })
-
-    console.log(database.list())
-
-    return reply.status(201).send()
-})
-
-//lista todos os users
-server.get('/listusers', async (request) => {
+//lista todos os clientes
+server.get('/listclientes', async (request) => {
     const search = request.query.search
 
     console.log(search) 
 
-    const users = await database.list(search)
+    const clientes = await database.list(search)
 
-    return users
+    return clientes
 })
 
-//edita users
-server.put('/users/:userID', async (request, reply) => {
-    const userID = request.params.userID
-    const {userName,userAge} = request.body
+//edita clientes
+server.put('/clientes/:clienteID', async (request, reply) => {
+    const clienteID = request.params.clienteID
+    const { clienteName,
+            clienteAge,
+            clienteBirthdate,
+            clientePhonenumb,
+            rimel,
+            gestante,
+            procRecente,
+            alergia,
+            tireoide,
+            probOcular,
+            tratOncologico,
+            dormelado,
+            especificProblem} = request.body
 
+   await database.findClienteByID(clienteID)
 
-    const user = await database.update(userID, {
-        userName,
-        userAge,
+    const cliente = await database.update(clienteID, {
+        clienteName,
+        clienteAge,
+        clienteBirthdate,
+        clientePhonenumb,
+        rimel,
+        gestante,
+        procRecente,
+        alergia,
+        tireoide,
+        probOcular,
+        tratOncologico,
+        dormelado,
+        especificProblem
     })
 
     return reply.status(204).send()
@@ -107,10 +168,10 @@ server.put('/users/:userID', async (request, reply) => {
 })
 
 
-server.delete('/users/:userID', async (request, reply) => {
-    const userID = request.params.userID
+server.delete('/clientes/:clienteID', async (request, reply) => {
+    const clienteID = request.params.clienteID
 
-    await database.delete(userID)
+    await database.delete(clienteID)
 
     return reply.status(204).send()
 })
@@ -136,6 +197,23 @@ server.post('/login', async (request, reply)=>{
   return reply.send(admin)
 
 })
+
+
+
+server.post('/createagendamento', async (request,reply) =>{
+
+  const {data_agendamento, procedimento, valor
+     ,clienteID} = request.body 
+
+  await database.createagendamento(data_agendamento, procedimento,
+     valor,clienteID)
+
+})
+
+
+
+
+
 
 
 //apontar porta com fastify

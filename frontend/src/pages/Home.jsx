@@ -23,11 +23,11 @@ function Home(){
       <ul>
 
         <li>
-          <Link to="/listUsers">Listar usuários</Link>
+          <Link to="/listclientes">Listar Cliente</Link>
         </li>
 
         <li>
-          <Link to="/create-user">Criar usuário</Link>
+          <Link to="/create-cliente">Criar Cliente</Link>
         </li>
 
       </ul>

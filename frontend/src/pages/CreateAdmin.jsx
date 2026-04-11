@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { api } from "../services/api"
+import BackButton from '../components/BackButton'
 
 function CreateAdmin(){
 
@@ -65,6 +66,8 @@ function CreateAdmin(){
     </div>
   </div>
   )
+
+
 }
 
 export default CreateAdmin

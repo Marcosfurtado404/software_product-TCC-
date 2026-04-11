@@ -1,26 +1,26 @@
 import {randomUUID} from 'crypto'
 
 export class databasememory{
-    #users = new Map()
+    #clientes = new Map()
  
 
 //array.from transforma a requisicao em array   
 
 //entries separa o Array, e depois conseguimos escolher qual Array usamos
     list(search) {
-        return Array.from(this.#users.entries())
-            .map((userArray) => {
-                const userID = userArray[0]
-                const data = userArray[1]
+        return Array.from(this.#clientes.entries())
+            .map((clienteArray) => {
+                const clienteID = clienteArray[0]
+                const data = clienteArray[1]
 
                 return {
-                    userID,
+                    clienteID,
                     ...data,
                 }
             })
-            .filter(user =>{
+            .filter(cliente =>{
                 if (search) {
-                  return user.userName.includes(search)
+                  return cliente.clienteName.includes(search)
                 }
 
                 return true
@@ -33,22 +33,22 @@ export class databasememory{
 
 
 //recebe o 'usuario' e armazena em #usuarios
-    create(user) {
+    create(cliente) {
 
         //UUID (universal unique ID)
-        const userID = randomUUID()
+        const clienteID = randomUUID()
         
-        this.#users.set (userID, user)
+        this.#clientes.set (clienteID, cliente)
     }
 
 
 
 
-    update(userID,user) {
-        this.#users.set(userID, user)
+    update(clienteID,cliente) {
+        this.#clientes.set(clienteID, cliente)
     }
 
-    delete(userID,user) {
-        this.#users.set(userID)
+    delete(clienteID,cliente) {
+        this.#clientes.set(clienteID)
     }
 }
