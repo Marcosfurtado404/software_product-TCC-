@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { api } from "../services/api"
 import BackButton from "../components/BackButton"
 
-function EditCliente() {
-  const { id } = useParams()
+function CreateCliente() {
   const navigate = useNavigate()
 
   const [clienteName, setName] = useState("")
@@ -20,7 +19,6 @@ function EditCliente() {
   const [tratOncologico, setTratOncologico] = useState("")
   const [dormelado, setDormelado] = useState("")
   const [especificProblem, setEspecificProblem] = useState("")
-  const [loading, setLoading] = useState(true)
 
   function emptyToNull(value) {
     return value === "" ? null : value
@@ -37,46 +35,11 @@ function EditCliente() {
     return null
   }
 
-  function booleanToString(value) {
-    if (value === true) return "true"
-    if (value === false) return "false"
-    return ""
-  }
-
-  useEffect(() => {
-    async function loadCliente() {
-      try {
-        const response = await api.get(`/clientes/${id}`)
-        const cliente = response.data
-
-        setName(cliente.clienteName ?? "")
-        setAge(cliente.clienteAge ?? "")
-        setDate(cliente.clienteBirthdate ?? "")
-        setPhoneNumber(cliente.clientePhonenumb ?? "")
-        setRimel(booleanToString(cliente.rimel))
-        setGestante(booleanToString(cliente.gestante))
-        setProcRecente(cliente.procRecente ?? "")
-        setAlergia(cliente.alergia ?? "")
-        setTireoide(booleanToString(cliente.tireoide))
-        setProbOcular(cliente.probOcular ?? "")
-        setTratOncologico(cliente.tratOncologico ?? "")
-        setDormelado(cliente.dormelado ?? "")
-        setEspecificProblem(cliente.especificProblem ?? "")
-      } catch (error) {
-        alert("Erro ao carregar cliente")
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    loadCliente()
-  }, [id])
-
-  async function updateCliente(e) {
+  async function createCliente(e) {
     e.preventDefault()
 
     try {
-      await api.put(`/clientes/${id}`, {
+      await api.post("/clientes", {
         clienteName: emptyToNull(clienteName),
         clienteAge: numberOrNull(clienteAge),
         clienteBirthdate: emptyToNull(clienteBirthdate),
@@ -92,29 +55,34 @@ function EditCliente() {
         especificProblem: emptyToNull(especificProblem),
       })
 
-      alert("Cliente atualizado")
+      alert("Cliente criado com sucesso")
+
+      setName("")
+      setAge("")
+      setDate("")
+      setPhoneNumber("")
+      setRimel("")
+      setGestante("")
+      setProcRecente("")
+      setAlergia("")
+      setTireoide("")
+      setProbOcular("")
+      setTratOncologico("")
+      setDormelado("")
+      setEspecificProblem("")
+
       navigate("/listClientes")
     } catch (error) {
-      alert("Erro ao atualizar cliente")
+      alert("Erro ao criar cliente")
     }
-  }
-
-  if (loading) {
-    return (
-      <div className="container">
-        <div className="card">
-          <h1>Carregando...</h1>
-        </div>
-      </div>
-    )
   }
 
   return (
     <div className="container">
       <div className="card">
-        <h1>Editar Cliente</h1>
+        <h1>Criar Cliente</h1>
 
-        <form onSubmit={updateCliente}>
+        <form onSubmit={createCliente}>
           <input
             type="text"
             placeholder="Nome"
@@ -203,8 +171,8 @@ function EditCliente() {
           />
 
           <div className="button-group-column">
-            <button type="submit">Atualizar</button>
-            <BackButton to="/listClientes" />
+            <button type="submit">Criar</button>
+            <BackButton to="/home" />
           </div>
         </form>
       </div>
@@ -212,4 +180,4 @@ function EditCliente() {
   )
 }
 
-export default EditCliente
+export default CreateCliente
